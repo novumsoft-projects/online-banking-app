@@ -4,7 +4,10 @@ import Transaction from '../components/Transaction'
 import Section from '../components/Section'
 import Home from '../components/Home'
 
+
 export default function Index() {
+
+ 
   return (
     <div>
       <Head>
@@ -12,8 +15,9 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Home />
-    <Transaction />
-    <Section />
+      <Transaction />
+      <Section />
+      <Transaction />
     </div>
   )
 }

@@ -1,6 +1,31 @@
-import { LockClosedIcon } from '@heroicons/react/solid'
+import { LockClosedIcon, LoginIcon } from '@heroicons/react/solid'
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
+import { data } from 'browserslist';
 
-export default function SignIn() {
+async function signinUser(credentials){
+  return fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+  .then(data => data.json)
+}
+
+export default function SignIn({ setToken }) {
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await signinUser({
+      username,
+      password
+    });
+    setToken(token)
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -18,7 +43,7 @@ export default function SignIn() {
             </a>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -33,6 +58,7 @@ export default function SignIn() {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
+                onChange={e => setUserName(e.target.value)}
               />
             </div>
             <div>
@@ -47,6 +73,7 @@ export default function SignIn() {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
           </div>
@@ -86,4 +113,8 @@ export default function SignIn() {
       </div>
     </div>
   )
+}
+
+SignIn.PropTypes = {
+  setToken: PropTypes.func.isRequired
 }

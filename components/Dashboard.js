@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+
+import SignIn from '../components/SignIn'
 
 const user = {
   name: 'Tom Cook',
@@ -26,6 +29,14 @@ function classNames(...classes) {
 }
 
 export default function Dashboard() {
+
+  const [token, setToken] = useState()
+
+  if(!token) {
+    return <SignIn setToken={setToken} />
+  }
+
+
   return (
     <div>
       <Disclosure as="nav" className="bg-gray-800">
