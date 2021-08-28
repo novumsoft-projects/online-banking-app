@@ -30,11 +30,11 @@ function classNames(...classes) {
 
 export default function Dashboard() {
 
-  const [token, setToken] = useState()
+  // const [token, setToken] = useState()
 
-  if(!token) {
-    return <SignIn setToken={setToken} />
-  }
+  // if(!token) {
+  //   return <SignIn setToken={setToken} />
+  // }
 
 
   return (
