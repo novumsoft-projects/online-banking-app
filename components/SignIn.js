@@ -1,18 +1,17 @@
 import { LockClosedIcon, LoginIcon } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
-import { data } from 'browserslist';
 
-async function signinUser(credentials){
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-  .then(data => data.json)
-}
+// async function signinUser(credentials){
+//   return fetch('http://localhost:8080/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(credentials)
+//   })
+//   .then(data => data.json)
+// }
 
 export default function SignIn({ setToken }) {
   const [username, setUserName] = useState();
@@ -58,7 +57,7 @@ export default function SignIn({ setToken }) {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
-                onChange={e => setUserName(e.target.value)}
+                // onChange={e => setUserName(e.target.value)}
               />
             </div>
             <div>
@@ -73,7 +72,7 @@ export default function SignIn({ setToken }) {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
-                onChange={e => setPassword(e.target.value)}
+                // onChange={e => setPassword(e.target.value)}
               />
             </div>
           </div>
