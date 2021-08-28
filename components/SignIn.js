@@ -114,6 +114,6 @@ export default function SignIn({ setToken }) {
   )
 }
 
-SignIn.PropTypes = {
-  setToken: PropTypes.func.isRequired
-}
+// SignIn.PropTypes = {
+//   setToken: PropTypes.func.isRequired
+// }
